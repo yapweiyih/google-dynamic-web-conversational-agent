@@ -18,44 +18,6 @@
 <!-- Widget JavaScript bundle -->
 <script src="https://cloud.google.com/ai/gen-app-builder/client?hl=en_US"></script>
 
-<!-- Search widget element is not visible by default -->
-<!-- <gen-search-widget
-  configId="ad6a1ffd-c98d-4545-8fcd-799e7f7f3651"
-  triggerId="searchWidgetTrigger">
-</gen-search-widget> -->
-
-<!-- <script>
-  // Initialize search widget with token
-  async function initializeSearchWidget() {
-    try {
-      console.log('Fetching token...');
-      const response = await fetch('http://localhost:3000/token');
-      const data = await response.json();
-      console.log('Token received');
-
-      const searchWidget = document.querySelector('gen-search-widget');
-      if (searchWidget) {
-        searchWidget.authToken = data.token;
-        console.log('Search widget token set');
-      } else {
-        console.error('Search widget element not found');
-      }
-    } catch (error) {
-      console.error('Error fetching token:', error);
-    }
-  }
-
-  // Call immediately when script loads
-  initializeSearchWidget();
-
-  // Also call when DOM is fully loaded to ensure widget exists
-  document.addEventListener('DOMContentLoaded', initializeSearchWidget);
-</script> -->
-
-<!-- Element that opens the widget on click. It does not have to be an input -->
-<!-- <button id="searchWidgetTrigger" style="padding: 10px 20px; font-size: 16px; cursor: pointer;">Search</button> -->
-
-
 <img id="background-image" src="nature.jpg" alt="background" width="100%" height="100%">
 <iframe id="webpage-container"></iframe>
 

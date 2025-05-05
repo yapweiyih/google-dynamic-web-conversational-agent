@@ -16,30 +16,6 @@ A Conversation Agent Function Tool is a powerful feature that allows your chatbo
 2. Map those intents to specific function tool
 3. Dynamically update the UI based on the conversation flow
 
-The function tool works by:
-```javascript
-async function renderWebpage(input) {
-    if (input.intent === "travel miles") {
-        const iframe = document.getElementById('webpage-container');
-        const backgroundImage = document.getElementById('background-image');
-        
-        iframe.src = "miles.html";
-        iframe.style.display = 'block';
-        backgroundImage.style.display = 'none';
-    } else if (input.intent === "baggage") {
-        const iframe = document.getElementById('webpage-container');
-        const backgroundImage = document.getElementById('background-image');
-        
-        iframe.src = "baggage.html";
-        iframe.style.display = 'block';
-        backgroundImage.style.display = 'none';
-    }
-    return Promise.resolve({})
-}
-```
-
-This function receives intents from the conversation and updates the webpage accordingly, creating a seamless integration between conversation and UI.
-
 
 ## Playbook Configuration
 
@@ -106,6 +82,30 @@ const toolId = "projects/hello-world-418507/locations/global/agents/75e7c898-526
 const dfMessenger = document.querySelector('df-messenger');
 dfMessenger.registerClientSideFunction(toolId, "call-web-client", renderWebpage)
 ```
+
+The function tool works by:
+```javascript
+async function renderWebpage(input) {
+    if (input.intent === "travel miles") {
+        const iframe = document.getElementById('webpage-container');
+        const backgroundImage = document.getElementById('background-image');
+        
+        iframe.src = "miles.html";
+        iframe.style.display = 'block';
+        backgroundImage.style.display = 'none';
+    } else if (input.intent === "baggage") {
+        const iframe = document.getElementById('webpage-container');
+        const backgroundImage = document.getElementById('background-image');
+        
+        iframe.src = "baggage.html";
+        iframe.style.display = 'block';
+        backgroundImage.style.display = 'none';
+    }
+    return Promise.resolve({})
+}
+```
+
+This function receives intents from the conversation and updates the webpage accordingly, creating a seamless integration between conversation and UI.
 
 
 ## How to demo?
