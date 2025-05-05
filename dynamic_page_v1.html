@@ -1,0 +1,127 @@
+<html>
+  <head>
+   <title>Demo</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <style>
+      #webpage-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+<!-- Widget JavaScript bundle -->
+<script src="https://cloud.google.com/ai/gen-app-builder/client?hl=en_US"></script>
+
+<!-- Search widget element is not visible by default -->
+<!-- <gen-search-widget
+  configId="ad6a1ffd-c98d-4545-8fcd-799e7f7f3651"
+  triggerId="searchWidgetTrigger">
+</gen-search-widget> -->
+
+<!-- <script>
+  // Initialize search widget with token
+  async function initializeSearchWidget() {
+    try {
+      console.log('Fetching token...');
+      const response = await fetch('http://localhost:3000/token');
+      const data = await response.json();
+      console.log('Token received');
+
+      const searchWidget = document.querySelector('gen-search-widget');
+      if (searchWidget) {
+        searchWidget.authToken = data.token;
+        console.log('Search widget token set');
+      } else {
+        console.error('Search widget element not found');
+      }
+    } catch (error) {
+      console.error('Error fetching token:', error);
+    }
+  }
+
+  // Call immediately when script loads
+  initializeSearchWidget();
+
+  // Also call when DOM is fully loaded to ensure widget exists
+  document.addEventListener('DOMContentLoaded', initializeSearchWidget);
+</script> -->
+
+<!-- Element that opens the widget on click. It does not have to be an input -->
+<!-- <button id="searchWidgetTrigger" style="padding: 10px 20px; font-size: 16px; cursor: pointer;">Search</button> -->
+
+
+<img id="background-image" src="nature.jpg" alt="background" width="100%" height="100%">
+<iframe id="webpage-container"></iframe>
+
+<link rel="stylesheet" href="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/themes/df-messenger-default.css">
+<script src="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js"></script>
+<df-messenger
+project-id="hello-world-418507"
+agent-id="75e7c898-526d-4789-8405-b496df0bf214"
+  language-code="en"
+  location="global"
+  max-query-length="-1"
+  allow-feedback="all">
+
+  <df-messenger-chat
+    enable-audio-input
+    bot-writing-text="..."
+    bot-actor-image="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Google_Bard_logo.svg/2048px-Google_Bard_logo.svg.png"
+    user-actor-image="https://img.freepik.com/premium-vector/user-icon-avatar-user-profile-person-icon-gender-neutral-silhouette-profile-picture-suitable_697711-1132.jpg"
+    chat-title-icon="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Google_Bard_logo.svg/2048px-Google_Bard_logo.svg.png"
+    chat-title="Generative Agent with Tool Function">
+    <df-reset-session-button
+    slot="titlebar-actions"
+    title-text="Start new session"
+    ></df-reset-session-button>
+  </df-messenger-chat>
+</df-messenger>
+
+<script>
+  async function renderWebpage(input) {
+    console.log("Calling renderWebpage with intent:", input)
+    if (input.intent === "travel miles") {
+      console.log("Showing `travel miles` intent")
+      const iframe = document.getElementById('webpage-container');
+      const backgroundImage = document.getElementById('background-image');
+
+      iframe.src = "krisflyer.html";
+      iframe.style.display = 'block';
+      backgroundImage.style.display = 'none';
+    } else if (input.intent === "baggage") {
+      console.log("Showing `baggage` intent")
+      const iframe = document.getElementById('webpage-container');
+      const backgroundImage = document.getElementById('background-image');
+
+      iframe.src = "baggage.html";
+      iframe.style.display = 'block';
+      backgroundImage.style.display = 'none';
+    }
+    return Promise.resolve({})
+  }
+
+  // Register the tool
+  const toolId = "projects/hello-world-418507/locations/global/agents/75e7c898-526d-4789-8405-b496df0bf214/tools/198cba37-ed4f-494e-a704-f68383add43c"
+  const dfMessenger = document.querySelector('df-messenger');
+  dfMessenger.registerClientSideFunction(toolId, "call-web-client", renderWebpage)
+</script>
+
+  <style>
+    df-messenger {
+      z-index: 999;
+      position: fixed;
+      bottom: 0px;
+      right: 0px;
+      top: 0;
+      width: 500px;
+    }
+  </style>
+
+  </body>
+</html>
