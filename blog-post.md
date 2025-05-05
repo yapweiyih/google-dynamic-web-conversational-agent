@@ -97,6 +97,10 @@ Setting up a dynamic web experience involves several key components:
 ```
 
 3. **Function Tool Registration**
+
+- Register a callback function when the playbook function tool is called.
+
+
 ```javascript
 const toolId = "projects/hello-world-418507/locations/global/agents/75e7c898-526d-4789-8405-b496df0bf214/tools/198cba37-ed4f-494e-a704-f68383add43c"
 const dfMessenger = document.querySelector('df-messenger');
